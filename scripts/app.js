@@ -27,15 +27,31 @@ function createDivs(size) {
 		div.style.display = 'grid';
 
 		// Style Individual Cells
-		div.style.backgroundColor = 'gray'
+		div.style.backgroundColor = 'gray';
 		div.style.gridAutoRows = size;
 		div.onmouseover = function (e) {
-			div.style.backgroundColor = 'black'
+			div.style.backgroundColor = currentColor;
 		}
-		div.className = 'grid-item'
+		div.className = 'grid-item';
 		container.appendChild(div);
 	}
 }
 
+// Clear the Board
+function clearBoard() {
+	var gridCells = document.querySelectorAll('.grid-item');
+	gridCells.forEach(element => {
+		element.style.backgroundColor = 'gray'
+	});
+}
 
-createDivs(16);
+gridSize = parseInt(prompt("How big do you want your Etch-A-Sketch to be?"))
+
+if (gridSize <= 100 && gridSize >= 1) {
+	createDivs(gridSize);
+}
+else {
+	alert('Invalid Size! (max. 100)')
+	alert('Defaulting to 16')
+	createDivs(currentSize)
+}
